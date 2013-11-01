@@ -1,4 +1,5 @@
 # Module responsible for establishing websocket handhake
+
 import hashlib, base64
 
 def create_hash (key):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import socket, struct, hashlib, threading, cgi, base64
+import socket, struct, threading, cgi
 import handshake
 
 def decode_char (data, data_length):
@@ -28,17 +28,17 @@ def determine_length (data):
 	byte_array = [ord(d) for d in data[:10]]
 	data_length = byte_array[1] & 127
 	if data_length == 126:
-		data_length = (data[2] & 255) * 2**8
-		data_length += data[3] & 255
+		data_length = (byte_array[2] & 255) * 2**8
+		data_length += byte_array[3] & 255
 	elif data_length == 127:
-		data_length = (data[2] & 255) * 2**56
-		data_length += (data[3] & 255) * 2**48
-		data_length += (data[4] & 255) * 2**40
-		data_length += (data[5] & 255) * 2**32
-		data_length += (data[6] & 255) * 2**24
-		data_length += (data[7] & 255) * 2**16
-		data_length += (data[8] & 255) * 2**8
-		data_length += data[9] & 255
+		data_length = (byte_array[2] & 255) * 2**56
+		data_length += (byte_array[3] & 255) * 2**48
+		data_length += (byte_array[4] & 255) * 2**40
+		data_length += (byte_array[5] & 255) * 2**32
+		data_length += (byte_array[6] & 255) * 2**24
+		data_length += (byte_array[7] & 255) * 2**16
+		data_length += (byte_array[8] & 255) * 2**8
+		data_length += byte_array[9] & 255
 	return data_length
 
 def recv_data (client, length):
