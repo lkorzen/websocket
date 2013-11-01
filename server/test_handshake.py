@@ -4,6 +4,7 @@ import handshake
 
 def test_create_hash():
 	assert handshake.create_hash('x3JJHMbDL1EzLkh9GBhXDw==') == 'HSmrc0sMlYUkAGmm5OPpG2HaGWk='
+	assert handshake.create_hash('VSk9BY6OLzHFqpv/8P9hAA==') == 'nsPt1+hbmFq/BDb1BufPnmtlslI='
 
 headers = { 'Origin': 'http://localhost:8080', 'Upgrade': 'websocket', 'Sec-WebSocket-Extensions': 'x-webkit-deflate-frame', 'Sec-WebSocket-Version': '13', 'Sec-WebSocket-Protocol': 'myprotocol', 'Host': 'localhost:9876', 'Sec-WebSocket-Key': 'VSk9BY6OLzHFqpv/8P9hAA==', 'User-Agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.114 Safari/537.36', 'Connection': 'Upgrade', 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
