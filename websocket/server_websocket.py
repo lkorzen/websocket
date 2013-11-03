@@ -3,6 +3,7 @@
 import socket, threading, cgi
 import messaging
 import handshake
+import file_handler
 
 def handle (client, addr):
 	#handle websocket connection
@@ -12,6 +13,9 @@ def handle (client, addr):
 		data = messaging.recv_data(client, 4096)
 		if not data: break
 		data = cgi.escape(data)
+		file_name = file_handler.check_for_file(data)
+		if file_name:
+			data = file_handler.load_file(file_name)
 		lock.acquire()
 		[messaging.send_data(c, data) for c in clients]
 		lock.release()
