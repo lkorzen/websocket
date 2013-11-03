@@ -1,6 +1,6 @@
 # Websocket messaging test module, testable with py.test
 
-import websocket_messaging, struct
+import messaging, struct
 
 def generate_byte_message(length, masked):
 	#helper function that generates websocket byte message 'length' long
@@ -54,31 +54,31 @@ def generate_string(length):
 	return ''.join(array)
 
 def test_determine_length():
-	assert websocket_messaging.determine_length(data1) == 1
-	assert websocket_messaging.determine_length(data10) == 10
-	assert websocket_messaging.determine_length(data160) == 160
-	assert websocket_messaging.determine_length(data500) == 500
-	assert websocket_messaging.determine_length(data1000) == 1000
-	assert websocket_messaging.determine_length(data100000) == 100000
-	assert websocket_messaging.determine_length(data1000000) == 1000000
+	assert messaging.determine_length(data1) == 1
+	assert messaging.determine_length(data10) == 10
+	assert messaging.determine_length(data160) == 160
+	assert messaging.determine_length(data500) == 500
+	assert messaging.determine_length(data1000) == 1000
+	assert messaging.determine_length(data100000) == 100000
+	assert messaging.determine_length(data1000000) == 1000000
 
 def test_decode_char():
-	assert websocket_messaging.decode_char(masked_data1, 1) == string1
-	assert websocket_messaging.decode_char(masked_data10, 10) == string10
-	assert websocket_messaging.decode_char(masked_data160, 160) == string160
-	assert websocket_messaging.decode_char(masked_data500, 500) == string500
-	assert websocket_messaging.decode_char(masked_data1000, 1000) == string1000
-	assert websocket_messaging.decode_char(masked_data100000, 100000) == string100000
-	assert websocket_messaging.decode_char(masked_data1000000, 1000000) == string1000000
+	assert messaging.decode_char(masked_data1, 1) == string1
+	assert messaging.decode_char(masked_data10, 10) == string10
+	assert messaging.decode_char(masked_data160, 160) == string160
+	assert messaging.decode_char(masked_data500, 500) == string500
+	assert messaging.decode_char(masked_data1000, 1000) == string1000
+	assert messaging.decode_char(masked_data100000, 100000) == string100000
+	assert messaging.decode_char(masked_data1000000, 1000000) == string1000000
 
 def test_encode_char():
-	assert websocket_messaging.encode_char(string1) == data1
-	assert websocket_messaging.encode_char(string10) == data10
-	assert websocket_messaging.encode_char(string160) == data160
-	assert websocket_messaging.encode_char(string500) == data500
-	assert websocket_messaging.encode_char(string1000) == data1000
-	assert websocket_messaging.encode_char(string100000) == data100000
-	assert websocket_messaging.encode_char(string1000000) == data1000000
+	assert messaging.encode_char(string1) == data1
+	assert messaging.encode_char(string10) == data10
+	assert messaging.encode_char(string160) == data160
+	assert messaging.encode_char(string500) == data500
+	assert messaging.encode_char(string1000) == data1000
+	assert messaging.encode_char(string100000) == data100000
+	assert messaging.encode_char(string1000000) == data1000000
 
 #helper data
 data1 = generate_byte_message(1, False) # 1 B
